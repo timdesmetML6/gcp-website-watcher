@@ -24,12 +24,10 @@ variable "watchers" {
   description = "Watcher module variables"
   type = map(object({
     interval      = string
-    function      = string
-    topic         = string
-    scheduler     = string
-    function_url  = string
+    name          = string
+    target_url    = string
     email         = string
-    string_target = string
+    target_string = string
   }))
 }
 

@@ -3,32 +3,22 @@ variable "project" {
   type        = string
 }
 
-variable "topic" {
-  description = "GCP Topic"
-  type        = string
-}
-
-variable "scheduler" {
-  description = "GCP scheduler"
-  type        = string
-}
-
 variable "interval" {
   description = "Cronjob string"
   type        = string
 }
 
-variable "function" {
-  description = "GCP Cloud Function"
+variable "name" {
+  description = "Main identifier for this watcher"
   type        = string
 }
 
-variable "function_url" {
+variable "target_url" {
   description = "URL to watch"
   type        = string
 }
 
-variable "string_target" {
+variable "target_string" {
   description = "String to watch for on page"
   type        = string
 }

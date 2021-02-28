@@ -5,11 +5,9 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "function"      : "TODO",
-        "topic"         : "TODO" ,
-        "scheduler"     : "TODO",
-        "function_url"  : "TODO",
+        "name"          : "TODO",
+        "target_url"    : "TODO",
         "email"         : "TODO",
-        "string_target" : "TODO",
+        "target_string" : "TODO",
     },
 }

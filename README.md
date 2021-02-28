@@ -43,12 +43,10 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "function"      : "TODO",
-        "topic"         : "TODO" ,
-        "scheduler"     : "TODO",
-        "function_url"  : "TODO",
+        "name"          : "TODO",
+        "target_url"    : "TODO",
         "email"         : "TODO",
-        "string_target" : "TODO",
+        "target_string" : "TODO",
     },
 }
 ```
@@ -59,13 +57,11 @@ Change every occurrence of TODO to the required value:
 - `pub_key`: your API KEY value on [this page](https://app.mailjet.com/account/api_keys)
 - `priv_key`: your SECRET KEY value on [this page](https://app.mailjet.com/account/api_keys)
 - `billing`: the Billing Account Name of your GCP Billing Account that you want to use. This can be found [here](https://console.cloud.google.com/billing)
-  > You can change the number 10 in the interval to any number between 1 and 59. It means "every X minutes". The default is set to "Every 10 minutes". If you have more experience with Cron Jobs feel free to modify the full string to your specific needs.
-- `function`: This value should be a unique name. Example: function-[website]-[product]-[your-name]
-- `topic`: This too should be unique. Example: topic-[website]-[product]-[your-name]
-- `scheduler`: This too should be unique. Example: scheduler-[website]-[product]-[your-name]
-- `function_url`: this should be the URL of the page you want to keep an eye on.
+- `interval`: You can change the number 10 in the interval to any number between 1 and 59. It means "every X minutes". The default is set to "Every 10 minutes". If you have more experience with Cron Jobs feel free to modify the full string to your specific needs.
+- `name`: This value should be a unique name. Example: [website]-[product]-[your-name]
+- `target_url`: this should be the URL of the page you want to keep an eye on.
 - `email`: Your email address (same as the MailJet account).
-- `string_target`: The sentence you want to check. If this sentence disappears you will receive email notifications.
+- `target_string`: The sentence you want to check. If this sentence disappears you will receive email notifications.
 
 Next up is simply executing the following commands:
 
@@ -93,21 +89,17 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "function"      : "TODO",
-        "topic"         : "TODO" ,
-        "scheduler"     : "TODO",
-        "function_url"  : "TODO",
+        "name"      : "TODO",
+        "target_url"    : "TODO",
         "email"         : "TODO",
-        "string_target" : "TODO",
+        "target_string" : "TODO",
     },
     "w2" = {
         "interval"      : "* */10 * * *",
-        "function"      : "TODO",
-        "topic"         : "TODO" ,
-        "scheduler"     : "TODO",
-        "function_url"  : "TODO",
+        "name"      : "TODO",
+        "target_url"    : "TODO",
         "email"         : "TODO",
-        "string_target" : "TODO",
+        "target_string" : "TODO",
     },
 }
 ```
@@ -116,23 +108,21 @@ The previous section explains in detail what values are expected for the fields.
 
 After changing the `./terraform/project.tfvars` file simply run the same commands as in the previous section.
 
-### Remove all crawlers
+### Remove a/all crawlers
 
-You can remove all your crawlers at once without removing your project by running the following command inside of the terraform folder:
-
-```
-terraform destroy --var-file project.tfvars --target module.watcher
-```
-
-### Remove a single crawler
-
-You can remove a single crawler without affecting your crawlers or your general project by running the following command inside of the terraform folder:
+You can remove one or multiple crawlers by removing them from the project.tfvars definition and running the following command (make sure to check the planned changes before confirming):
 
 ```
-terraform destroy --var-file project.tfvars --target module.watcher.w1
+terraform apply --var-file project.tfvars
 ```
 
-> Note that the `w1` at the end of the command should change according to which crawler you want to remove.
+### Remove the whole setup
+
+You can remove everything setup by this repo by running the following command (make sure to check the planned changes before confirming):
+
+```
+terraform destroy --var-file project.tfvars
+```
 
 ## Associated Cost
 
