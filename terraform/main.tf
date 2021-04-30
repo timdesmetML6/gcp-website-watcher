@@ -1,7 +1,5 @@
 provider "google" {
   project = var.project
-  region  = "europe-west1"
-  zone    = "europe-west1-b"
 }
 
 data "google_billing_account" "acct" {
@@ -15,24 +13,10 @@ resource "google_project" "project" {
   billing_account = data.google_billing_account.acct.id
 }
 
-resource "google_project_service" "scheduler_service" {
-  service    = "cloudscheduler.googleapis.com"
-  depends_on = [google_project.project]
-}
-
-resource "google_project_service" "functions_service" {
-  service    = "cloudfunctions.googleapis.com"
-  depends_on = [google_project.project]
-}
-
-resource "google_project_service" "build_service" {
-  service    = "cloudbuild.googleapis.com"
-  depends_on = [google_project.project]
-}
-
-resource "google_project_service" "appengine_service" {
+resource "google_project_service" "svcs" {
+  for_each = toset(["appengine", "cloudbuild", "cloudfunctions", "cloudscheduler"])
   project    = var.project
-  service    = "appengine.googleapis.com"
+  service    = "${each.key}.googleapis.com"
   depends_on = [google_project.project]
 }
 
@@ -51,18 +35,14 @@ module "watcher" {
   priv_key = var.priv_key
 
   interval      = each.value.interval
-  function      = each.value.function
-  topic         = each.value.topic
-  scheduler     = each.value.scheduler
-  function_url  = each.value.function_url
+  name          = each.value.name
+  target_url    = each.value.target_url
   email         = each.value.email
-  string_target = each.value.string_target
+  target_string = each.value.target_string
 
   depends_on = [
     google_project.project,
     google_app_engine_application.app,
-    google_project_service.scheduler_service,
-    google_project_service.functions_service,
-    google_project_service.build_service
+    google_project_service.svcs,
   ]
 }

@@ -1,9 +1,9 @@
 resource "google_pubsub_topic" "trigger" {
-  name = var.topic
+  name = "watcher-${var.name}"
 }
 
 resource "google_cloud_scheduler_job" "watch-job" {
-  name       = var.scheduler
+  name       = "watcher-${var.name}"
   schedule   = var.interval
 
   pubsub_target {
@@ -13,7 +13,7 @@ resource "google_cloud_scheduler_job" "watch-job" {
 }
 
 resource "google_storage_bucket" "bucket" {
-  name = "bucket-${var.topic}"
+  name = "watcher-${var.name}"
 }
 
 resource "google_storage_bucket_object" "archive" {
@@ -23,7 +23,7 @@ resource "google_storage_bucket_object" "archive" {
 }
 
 resource "google_cloudfunctions_function" "function" {
-  name        = var.function
+  name        = "watcher-${var.name}"
   runtime     = "python37"
   entry_point = "hello_pubsub"
 
@@ -36,8 +36,8 @@ resource "google_cloudfunctions_function" "function" {
   }
 
   environment_variables = {
-    URL        = var.function_url
-    TARGET     = var.string_target
+    URL        = var.target_url
+    TARGET     = var.target_string
     PUBLIC_KEY = var.pub_key
     SECRET_KEY = var.priv_key
     EMAIL      = var.email
