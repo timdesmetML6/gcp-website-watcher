@@ -5,7 +5,6 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "name"          : "TODO",
         "target_url"    : "TODO",
         "email"         : "TODO",
         "target_string" : "TODO",

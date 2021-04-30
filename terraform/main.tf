@@ -34,8 +34,8 @@ module "watcher" {
   pub_key  = var.pub_key
   priv_key = var.priv_key
 
+  name          = each.key
   interval      = each.value.interval
-  name          = each.value.name
   target_url    = each.value.target_url
   email         = each.value.email
   target_string = each.value.target_string
