@@ -43,7 +43,6 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "name"          : "TODO",
         "target_url"    : "TODO",
         "email"         : "TODO",
         "target_string" : "TODO",
@@ -53,13 +52,13 @@ watchers = {
 
 Change every occurrence of TODO to the required value:
 
-- `project`: a unique name for your GCP project (should not exist yet)
-- `pub_key`: your API KEY value on [this page](https://app.mailjet.com/account/api_keys)
-- `priv_key`: your SECRET KEY value on [this page](https://app.mailjet.com/account/api_keys)
-- `billing`: the Billing Account Name of your GCP Billing Account that you want to use. This can be found [here](https://console.cloud.google.com/billing)
+- `project`: A unique name for your GCP project (should not exist yet)
+- `pub_key`: Your API KEY value on [this page](https://app.mailjet.com/account/api_keys)
+- `priv_key`: Your SECRET KEY value on [this page](https://app.mailjet.com/account/api_keys)
+- `billing`: The Billing Account Name of your GCP Billing Account that you want to use. This can be found [here](https://console.cloud.google.com/billing)
+- `w1`: Represents a unique key/name for the watcher
 - `interval`: You can change the number 10 in the interval to any number between 1 and 59. It means "every X minutes". The default is set to "Every 10 minutes". If you have more experience with Cron Jobs feel free to modify the full string to your specific needs.
-- `name`: This value should be a unique name. Example: [website]-[product]-[your-name]
-- `target_url`: this should be the URL of the page you want to keep an eye on.
+- `target_url`: This should be the URL of the page you want to keep an eye on.
 - `email`: Your email address (same as the MailJet account).
 - `target_string`: The sentence you want to check. If this sentence disappears you will receive email notifications.
 
@@ -89,14 +88,12 @@ billing = "TODO"
 watchers = {
     "w1" = {
         "interval"      : "* */10 * * *",
-        "name"      : "TODO",
         "target_url"    : "TODO",
         "email"         : "TODO",
         "target_string" : "TODO",
     },
     "w2" = {
         "interval"      : "* */10 * * *",
-        "name"      : "TODO",
         "target_url"    : "TODO",
         "email"         : "TODO",
         "target_string" : "TODO",
