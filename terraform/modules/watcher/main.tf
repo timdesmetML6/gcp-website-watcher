@@ -41,5 +41,6 @@ resource "google_cloudfunctions_function" "function" {
     PUBLIC_KEY = var.pub_key
     SECRET_KEY = var.priv_key
     EMAIL      = var.email
+    CURRENTLY_PRESENT = var.currently_present
   }
 }

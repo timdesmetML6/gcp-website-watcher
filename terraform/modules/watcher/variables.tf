@@ -37,3 +37,9 @@ variable "email" {
   description = "Your email address"
   type        = string
 }
+
+
+variable "currently_present" {
+  description = "If string is on the page currently"
+  type        = bool
+}

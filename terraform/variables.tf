@@ -9,12 +9,6 @@ variable "region" {
   default     = "europe-west1"
 }
 
-variable "zone" {
-  description = "GCP zone"
-  type        = string
-  default     = "europe-west1-b"
-}
-
 variable "billing" {
   description = "GCP Billing Account Display Name"
   type        = string
@@ -23,11 +17,11 @@ variable "billing" {
 variable "watchers" {
   description = "Watcher module variables"
   type = map(object({
-    interval      = string
-    name          = string
-    target_url    = string
-    email         = string
-    target_string = string
+    interval          = string
+    target_url        = string
+    email             = string
+    target_string     = string
+    currently_present = bool
   }))
 }
 
