@@ -8,6 +8,7 @@ TARGET = os.environ.get('TARGET')
 PUBLIC_KEY = os.environ.get('PUBLIC_KEY')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL = os.environ.get('EMAIL')
+CURRENTLY_PRESENT = os.environ.get('CURRENTLY_PRESENT')
 
 mailjet = Client(auth=(PUBLIC_KEY, SECRET_KEY), version='v3.1')
 
@@ -16,7 +17,7 @@ def hello_pubsub(event, context):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    if TARGET not in str(soup):
+    if TARGET in str(soup) != CURRENTLY_PRESENT:
         data = {
             'Messages': [
                 {
